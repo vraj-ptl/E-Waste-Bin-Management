@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP | EcoBin</title>
+    <link rel="stylesheet" href="/css/otp.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="otp-page">
+
+    <div class="otp-container">
+        <div class="otp-logo">♻️ EcoBin</div>
+        
+        <div class="otp-header">
+            <h2>Verification Code</h2>
+            <p>We've sent a 6-digit code to your registered email. Enter it below to verify your account.</p>
+            <p><b>Please Check Your Spam</b></p>
+        </div>
+
+        <form id="otpForm" action="/recycle/verify-otp" method="POST">
+            <div class="otp-input-group">
+                <input type="text" maxlength="8"  inputmode="numeric" name="otp" required>
+            </div>
+
+            <button type="submit" class="verify-btn">Verify & Proceed</button>
+        </form>
+
+        <div class="otp-footer">
+            <p>Didn't receive the code? <form action="/recycle" id="resendBtn" method="post"><button type="submit">Resend Code</button></form></p>
+            <span id="timer">00:59</span>
+        </div>
+
+        <a class="back-link" href="/recycle"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+    </div>
+
+    <script>
+        // Automatic focus shift script - automatically scales to 6 inputs
+        // 1. Automatic focus shift script
+    const inputs = document.querySelectorAll('.otp-input-group input');
+    inputs.forEach((input, index) => {
+        input.addEventListener('keyup', (e) => {
+            if (e.key >= 0 && e.key <= 9) {
+                if (index < inputs.length - 1) inputs[index + 1].focus();
+            } else if (e.key === 'Backspace') {
+                if (index > 0) inputs[index - 1].focus();
+            }
+        });
+    });
+
+    // 2. Decrementing Timer Logic
+    let timeLeft = 59; // Start at 59 seconds
+    const timerElement = document.getElementById('timer');
+    const resendBtn = document.getElementById('resendBtn');
+
+    const countdown = setInterval(() => {
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            timerElement.innerText = "00:00";
+            resendBtn.style.opacity = "1"; // Make resend link fully visible
+            resendBtn.style.pointerEvents = "auto"; // Enable clicking
+        } else {
+            timeLeft--;
+            // Formats the number to always show two digits (e.g., 00:09)
+            timerElement.innerText = `00:${timeLeft < 10 ? '0' : ''}${timeLeft}`;
+        }
+    }, 1000);
+    // Get all input values
+
+    </script>
+</body>
+</html>

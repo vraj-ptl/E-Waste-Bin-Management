@@ -1,0 +1,81 @@
+.container{
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.error-box{
+    width: auto;
+    padding: 50px;
+    border: 2px solid #34d399;
+    border-radius: 30px;
+    background-color: #88f0ca;
+    color: green;
+}
+h1{
+    font-size: 50px;
+}
+.error-box > a{
+    display: block;
+    width: fit-content;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: rgb(56, 56, 255);
+    border: 2px solid blue;
+    color: white;
+    text-decoration: none;
+    justify-self: center;
+    margin-top: 20px;
+    transition-duration: 300ms;
+}
+.error-box > a:hover{
+    background-color: blue;
+    box-shadow: 0 0 10px black;
+}
+/* --- ERROR PAGE RESPONSIVE STYLES --- */
+
+/* 1. Tablets and Large Phones (under 768px) */
+@media (max-width: 768px) {
+    .container {
+        height: auto; /* Allow height to grow with content */
+        min-height: 90vh;
+        padding: 40px 20px;
+    }
+
+    .error-box {
+        padding: 40px 30px;
+        border-radius: 24px;
+        text-align: center; /* Ensures text is centered on mobile */
+    }
+
+    h1 {
+        font-size: 35px; /* Scale down heading */
+    }
+}
+
+/* 2. Small Mobile Devices (under 480px) */
+@media (max-width: 480px) {
+    .error-box {
+        padding: 30px 20px;
+        width: 100%; /* Take full width on small screens */
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .error-box > a {
+        width: 100%; /* Make the link button easier to tap */
+        box-sizing: border-box;
+        text-align: center;
+    }
+}
+
+/* Handle landscape mode or very short screens */
+@media (max-height: 500px) {
+    .container {
+        height: auto;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+}

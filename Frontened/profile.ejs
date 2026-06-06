@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - EcoBin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+
+<body>
+    <%- include("./navbar.ejs") %>
+    <div class="container">
+        <!-- Profile Hero -->
+        <section class="profile-hero">
+            <div class="profile-header">
+                <div class="profile-info">
+                    <div class="profile-avatar">
+                        <div class="avatar-circle">
+                            <i class="fas fa-leaf avatar-icon"></i>
+                        </div>
+                        <div class="level-badge">1</div>
+                    </div>
+                    <div class="profile-details">
+                        <h1 class="profile-name"> <%= username %></h1>
+                        <p class="profile-title">Eco Enthusiast</p>
+                        <div class="profile-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Mumbai, Maharashtra</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Joined March 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-edit">
+                    <i class="fas fa-edit"></i>
+                    Edit Profile
+                </button>
+            </div>
+        </section>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-recycle"></i>
+                </div>
+                <div class="stat-value"><%= userdata.recycledItems.length %></div>
+                <div class="stat-label">Items Recycled</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <% let count = 0;
+                for(i=0;i<userdata.recycledItems.length;i++)
+                    {
+                        count = count +  userdata.recycledItems[i].pointsEarned
+                    } %>
+                <div class="stat-value"><%= count %></div>
+                <div class="stat-label">Points Earned</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="stat-value">12 days</div>
+                <div class="stat-label">Current Streak</div>
+            </div>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="content-grid">
+            <!-- Personal Information -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Personal Information</h2>
+                    <button class="btn-edit-small">
+                        <i class="fas fa-edit"></i>
+                        Edit
+                    </button>
+                </div>
+                <div class="info-list">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">Full Name</div>
+                            <div class="info-value"><%= username %></div>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">Email</div>
+                            <div class="info-value"><%= userdata.email %></div>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">Phone</div>
+                            <div class="info-value"> +91 <%= userdata.phone %></div>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">Location</div>
+                            <div class="info-value">Mumbai, Maharashtra</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div>
+                <!-- Achievement Card -->
+                <div class="achievement-card">
+                    <div class="achievement-header">
+                        <div class="achievement-badge">1</div>
+                        <div class="achievement-info">
+                            <h3>Eco Enthusiast</h3>
+                            <p>Level 1</p>
+                        </div>
+                    </div>
+                    <div class="progress-section">
+                        <div class="progress-header">
+                            <span class="progress-label">Progress to Level 9</span>
+                            <span class="progress-percent">65%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <p class="progress-text">16 more items to next level</p>
+                    </div>
+                </div>
+
+                <!-- QR Code -->
+                <div class="card" style="margin-top: 20px;">
+                    <div class="qr-section">
+                        <h3 class="qr-title">Your QR Code</h3>
+                        <div class="qr-code">
+                            <div class="qr-placeholder">
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                                <div class="qr-pixel"></div>
+                            </div>
+                        </div>
+                        <p class="qr-hint">Scan at any smart bin to identify yourself</p>
+                        <button class="btn-download">Download QR Code</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings -->
+        <section class="settings-section">
+            <h2 class="card-title" style="margin-bottom: 20px;">Settings</h2>
+            <div class="settings-item">
+                <div class="settings-left">
+                    <div class="settings-icon">
+                        <i class="fas fa-user-cog"></i>
+                    </div>
+                    <div class="settings-info">
+                        <h3>Account Settings</h3>
+                        <p>Manage your account details</p>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-right settings-arrow"></i>
+            </div>
+            <div class="settings-item">
+                <div class="settings-left">
+                    <div class="settings-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="settings-info">
+                        <h3>Notifications</h3>
+                        <p>Configure notification preferences</p>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-right settings-arrow"></i>
+            </div>
+            <div class="settings-item">
+                <div class="settings-left">
+                    <div class="settings-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="settings-info">
+                        <h3>Privacy & Security</h3>
+                        <p>Manage your data and security</p>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-right settings-arrow"></i>
+            </div>
+            <div class="settings-item">
+                <div class="settings-left">
+                    <div class="settings-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <div class="settings-info">
+                        <h3>Linked Accounts</h3>
+                        <p>Connect social accounts</p>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-right settings-arrow"></i>
+            </div>
+        </section>
+
+        <!-- Sign Out -->
+        <div class="signout-section">
+            <a class="btn-signout" href="/user/logout">
+                <i class="fas fa-sign-out-alt"></i>
+                Log Out
+            </a>
+        </div>
+    </div>
+
+    <%- include("./footer.ejs") %>
+    <script src="/JS/profile.js"></script>
+</body>
+
+</html>
